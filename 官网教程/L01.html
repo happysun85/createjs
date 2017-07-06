@@ -5,27 +5,54 @@
 <title>Title</title>
 </head>
 <body>
-<canvas id="canvas" width="500" height="500">
+<canvas id="mycanvas" width="500" height="400">
 
 </canvas>
 <script src="../js/CreateJS.js"></script>
 <script>
-var canvas = document.querySelector('canvas');
-var stage = new createjs.Stage(canvas);
-//生成圆形
-var circle = new createjs.Shape();
-circle.graphics
-    .setStrokeStyle(5)
-    .beginStroke("rgba(0,0,0,.5)")
-    .beginFill("orange")
-    .drawCircle(0, 0, 50);
-circle.x = 160;
-circle.y = 100;
+var myCanvas = document.querySelector('#mycanvas');
+var stage = new createjs.Stage(myCanvas);
 
-//将生成图形添加到stage中，并且调用update方法更新
-stage.addChild(circle);
+function circle() {
+  var circle = new createjs.Shape();
+  circle.graphics
+      .setStrokeStyle(2)
+      .beginStroke('rgba(0,0,0,.5)')
+      .beginFill('orange')
+      .drawCircle(0, 0, 50);
+  circle.x = 55;
+  circle.y = 100;
+  stage.addChild(circle);
+}
+
+function rect() {
+  var rect = new createjs.Shape();
+  rect.graphics
+      .beginFill('orange')
+      .drawRect(10, 10, 100, 100);
+  rect.x = 120;
+  rect.y = 40;
+  stage.addChild(rect);
+}
+
+function polystar() {
+  var polystar = new createjs.Shape();
+  polystar.graphics
+      .setStrokeStyle(5)
+      .beginFill('orange')
+      .drawPolyStar(290, 100, 5, 5, 10, -10);
+  //绘制星形,
+  //参数一二为星形中心坐标x,y,
+  //参数三为星形外半径,
+  //参数四为星形的角数量或者多边形的边数,
+  //参数五为星形深度,取值范围介于0-1之间,当取0时(没有深度),显示为多边形,当取0时(无限深度),不显示图形,
+  //参数六为星形角度.
+  stage.addChild(polystar)
+}
+circle();
+rect();
+polystar();
 stage.update();
-
 
 </script>
 </body>
