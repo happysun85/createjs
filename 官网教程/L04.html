@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Title</title>
+</head>
+<body>
+<canvas id="mycanvas" width="500" height="400">
+
+</canvas>
+<script src="../js/CreateJS.js"></script>
+<script>
+var myCanvas = document.querySelector('#mycanvas');
+var stage = new createjs.Stage(myCanvas);
+stage.enableMouseOver();
+function circle() {
+  var circle = new createjs.Shape();
+
+  //生成圆形
+  circle.graphics
+      .beginFill('orange')
+      .drawCircle(0, 0, 50);
+
+  //以下方式可以方便的修改图形相关的属性
+  //修改图形坐标
+  circle.x = Math.floor(Math.random() * 200);
+  circle.y = Math.floor(Math.random() * 350);
+
+  //修改图形缩放
+  circle.scaleX = Math.floor(Math.random() * 2) + 1;
+  circle.scaleY = Math.floor(Math.random() * 2) + 1;
+
+  //修改alpha和旋转
+  circle.alpha = Math.random() * 1;
+  circle.rotation = Math.floor(Math.random() * 60);
+
+  //设置图形相关的鼠标事件
+  circle.on("click", function() {
+    alert('click')
+  }, null, false);
+
+  circle.on("mouseout", function() {
+    alert('mouseout')
+  }, null, false);
+
+  stage.addChild(circle)
+
+};
+for (let i = 0; i < 4; i++) {
+  circle();
+}
+//避免重复使用UPDATE。
+createjs.Ticker.addEventListener('tick', function() {
+  stage.update();
+})
+
+</script>
+</body>
+</html>
