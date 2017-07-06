@@ -52,7 +52,11 @@ function polystar() {
 circle();
 rect();
 polystar();
-stage.update();
+
+//避免重复使用UPDATE。
+createjs.Ticker.addEventListener('tick', function() {
+  stage.update();
+})
 
 </script>
 </body>
